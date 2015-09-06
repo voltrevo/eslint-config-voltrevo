@@ -41,7 +41,7 @@ module.exports = {
   },
 
   'plugins': [
-    // e.g. 'react' (must run `npm install eslint-plugin-react` first)
+    'require-path-exists'
   ],
 
   'rules': {
