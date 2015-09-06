@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-voltrevo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An eslint config module with my preferences",
   "main": "index.js",
   "scripts": {
