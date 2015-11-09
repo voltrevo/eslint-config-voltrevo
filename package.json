@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-voltrevo",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "An eslint config module with my preferences",
   "main": "index.js",
   "scripts": {
@@ -19,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/voltrevo/eslint-config-voltrevo/issues"
   },
-  "homepage": "https://github.com/voltrevo/eslint-config-voltrevo#readme",
-  "dependencies": {
-    "eslint-plugin-require-path-exists": "^1.0.15"
-  }
+  "homepage": "https://github.com/voltrevo/eslint-config-voltrevo#readme"
 }

@@ -41,10 +41,12 @@ module.exports = {
   },
 
   'plugins': [
-    'require-path-exists'
+    'require-path-exists',
+    'filesize'
   ],
 
   'rules': {
+    'filesize/filesize': [2, {'limit': 1024}],
 
     // opentok/javascript: Proposed additions: Errors
     'strict': [2, 'global'],          // controls location of Use Strict Directives
@@ -56,7 +58,7 @@ module.exports = {
     'no-debugger': 1,                // http://eslint.org/docs/rules/no-debugger
     'no-console': 1,                 // http://eslint.org/docs/rules/no-console
     'no-alert': 1,                   // http://eslint.org/docs/rules/no-alert
-    'no-constant-condition': 1,      // http://eslint.org/docs/rules/no-constant-condition
+    'no-constant-condition': 0,      // http://eslint.org/docs/rules/no-constant-condition
     'no-dupe-keys': 2,               // http://eslint.org/docs/rules/no-dupe-keys
     'no-duplicate-case': 2,          // http://eslint.org/docs/rules/no-duplicate-case
     'no-empty': 2,                   // http://eslint.org/docs/rules/no-empty
@@ -81,7 +83,7 @@ module.exports = {
     'guard-for-in': 2,               // http://eslint.org/docs/rules/guard-for-in
     'no-caller': 2,                  // http://eslint.org/docs/rules/no-caller
     'no-else-return': 2,             // http://eslint.org/docs/rules/no-else-return
-    'no-eq-null': 1,                 // disallow comparisons to null without a type-checking operator (off by default)
+    'no-eq-null': 2,                 // disallow comparisons to null without a type-checking operator (off by default)
     'no-eval': 2,                    // http://eslint.org/docs/rules/no-eval
     'no-extend-native': 2,           // http://eslint.org/docs/rules/no-extend-native
     'no-extra-bind': 2,              // http://eslint.org/docs/rules/no-extra-bind
@@ -104,85 +106,68 @@ module.exports = {
     'no-sequences': 2,               // http://eslint.org/docs/rules/no-sequences
     'no-throw-literal': 2,           // http://eslint.org/docs/rules/no-throw-literal
     'no-with': 2,                    // http://eslint.org/docs/rules/no-with
-    'vars-on-top': 1,                // http://eslint.org/docs/rules/vars-on-top
+    'vars-on-top': 0,                // http://eslint.org/docs/rules/vars-on-top
     'wrap-iife': [2, 'any'],         // http://eslint.org/docs/rules/wrap-iife
-    'yoda': 1,                       // http://eslint.org/docs/rules/yoda
+    'yoda': [2, "never", { "exceptRange": true }], // http://eslint.org/docs/rules/yoda
     'no-iterator': 2,                // disallow usage of __iterator__ property
     'no-unused-expressions': 2,      // disallow usage of expressions in statement position
-    'no-void': 0,                    // disallow use of void operator (off by default)
-    'no-warning-comments': 1,        // disallow usage of configurable warning terms in comments, e.g. TODO or FIXME (off by default)
-
-    // opentok/javascript: Proposed additions: Variables
+    'no-void': 2,                    // disallow use of void operator (off by default)
+    'no-warning-comments': 0,        // disallow usage of configurable warning terms in comments, e.g. TODO or FIXME (off by default)
     'no-delete-var': 2,               // disallow deletion of variables
-    'no-undef-init': 1,               // disallow use of undefined when initializing variables
+    'no-undef-init': 0,               // disallow use of undefined when initializing variables
     'no-undefined': 0,                // disallow use of undefined variable (off by default)
-
-    // opentok/javascript: Proposed additions: node.js
     'handle-callback-err': [2, '^(err|error)$' ],
-    'no-new-require': 2,        // disallow use of new operator with the require function (off by default) (on by default in the node environment)
-    'no-path-concat': 2,        // disallow string concatenation with __dirname and __filename (off by default) (on by default in the node environment)
-    'no-process-exit': 1,       // disallow process.exit() (on by default in the node environment)
+    'no-new-require': 2,              // disallow use of new operator with the require function (off by default) (on by default in the node environment)
+    'no-path-concat': 2,              // disallow string concatenation with __dirname and __filename (off by default) (on by default in the node environment)
+    'no-process-exit': 1,             // disallow process.exit() (on by default in the node environment)
+    'func-style': [2, 'expression'],  // [1, 'expression'] enforces use of function declarations or expressions (off by default)
 
-    // opentok/javascript: Proposed additions: Stylistic Issues
-    'func-style': 0,                 // [1, 'expression'] enforces use of function declarations or expressions (off by default)
     'key-spacing': [2, {             // http://eslint.org/docs/rules/key-spacing
         'beforeColon': false,
         'afterColon': true
     }],
+
     'no-lonely-if': 2,              // disallow if as the only statement in an else block (off by default)
     'no-mixed-spaces-and-tabs': 2,  // disallow mixed spaces and tabs for indentation
-    'no-nested-ternary': 2,          // http://eslint.org/docs/rules/no-nested-ternary
+    'no-nested-ternary': 0,          // http://eslint.org/docs/rules/no-nested-ternary
     'operator-assignment': [2, 'always'], // require assignment operator shorthand where possible or prohibit it entirely (off by default)
     'padded-blocks': 0,             // [2, 'always'] or [2, 'never'] enforce padding within blocks (off by default)
     'quote-props': [2, 'as-needed'],  // require quotes around object literal property names (off by default)
     'spaced-comment': [2, 'always'],  // http://eslint.org/docs/rules/spaced-comment
-
-    // opentok/javascript: OBJECTS
     'no-new-wrappers': 2,       // disallows creating new instances of String, Number, and Boolean
     'no-new-object': 2,             // disallow use of the Object constructor
-
-    // opentok/javascript: ARRAYS
     'no-array-constructor': 2,      // disallow use of the Array constructor
-
-    // opentok/javascript: STRINGS
     'quotes': [2, 'single', 'avoid-escape'], // specify whether double or single quotes should be used
-
-    // opentok/javascript: FUNCTIONS
     'no-inner-declarations': 2,   // disallow function or variable declarations in nested blocks
-    'no-shadow': 0,                   // disallow declaration of variables already declared in the outer scope
+    'no-shadow': 2,                   // disallow declaration of variables already declared in the outer scope
     'no-shadow-restricted-names': 2,  // disallow shadowing of names such as arguments
-
-    // opentok/javascript: PROPERTIES
-    'dot-notation': [2, {'allowKeywords': false}],          // encourages use of dot notation whenever possible
-
-    // opentok/javascript: VARIABLES
+    'dot-notation': [2, {'allowKeywords': true}],          // encourages use of dot notation whenever possible
     'no-undef': 2,                    // disallow use of undeclared variables unless mentioned in a /*global */ block
-    'one-var': [2, { 'initialized': 'never', 'uninitialized': 'always' }],                   // allow just one var statement per function (off by default)
+    'one-var': [2, 'never'],                   // allow just one var statement per function (off by default)
+
     'no-unused-vars': [2, {          // http://eslint.org/docs/rules/no-unused-vars
-      'vars': 'all', // could go to 'local' if needed
-      'args': 'after-used'
+      'vars': 'all',
+      'args': 'all',
+      'argsIgnorePattern': '^[Ii]gnore'
     }],
+
     'no-use-before-define': 2,       // http://eslint.org/docs/rules/no-use-before-define
     'no-cond-assign': 2,          // disallow assignment in conditional expressions
-
-    // opentok/javascript: Conditional Expressions & Equality
-    'eqeqeq': [2, 'smart'],                // require the use of === and !==
-
-    // opentok/javascript: Blocks
+    'eqeqeq': 2,                     // require the use of === and !==
     'curly': 2,                 // specify curly brace conventions for all control statements
+
     'brace-style': [2,               // http://eslint.org/docs/rules/brace-style
       '1tbs', {
       'allowSingleLine': true
     }],
 
-    // opentok/javascript: Whitespace
     'indent': [2, 2, {'VariableDeclarator': 2, 'SwitchCase': 1}], // http://eslint.org/docs/rules/indent
     'no-spaced-func': 2,                                          // disallow space between function identifier and application
-    'no-trailing-spaces': [2, { 'skipBlankLines': true }],
+    'no-trailing-spaces': 2,
     'space-before-function-paren': [2, 'never'],
     'space-after-keywords': 2,
     'space-before-blocks': 2,                                     // require or disallow space before blocks (off by default)
-    'object-curly-spacing': [2, 'always'],
+    'object-curly-spacing': [2, 'never'],
     'array-bracket-spacing': [2, 'never'],                        // requires eslint v1.0.0
     'space-in-parens': [2, 'never'],                              // require or disallow spaces inside parentheses (off by default)
     'space-infix-ops': 2,                                         // require spaces around operators
@@ -193,34 +178,28 @@ module.exports = {
       'before': false,
       'after': true
     }],
+
     'semi-spacing': [2, {                                         // http://eslint.org/docs/rules/semi-spacing
       'before': false,
       'after': true
     }],
 
-    // opentok/javascript: Commas
     'comma-dangle': [2, 'never'],         // disallow trailing commas in object literals
     'comma-style': [2, 'last'],      // http://eslint.org/docs/rules/comma-style
 
-    // opentok/javascript: Semicolons
     'semi': [2, 'always'],           // http://eslint.org/docs/rules/semi
 
-    // opentok/javascript: Types & Coercion
     'radix': 2,                      // http://eslint.org/docs/rules/radix
 
-    // opentok/javascript: Naming conventions
     'camelcase': [2, {               // http://eslint.org/docs/rules/camelcase
       'properties': 'never'
     }],
-    'new-cap': [2, {                 // http://eslint.org/docs/rules/new-cap
-      'newIsCap': true
-    }],
+
+    'new-cap': 0,                   // http://eslint.org/docs/rules/new-cap
     'new-parens': 2,                // disallow the omission of parentheses when invoking a constructor with no arguments
     'no-underscore-dangle': 0,       // http://eslint.org/docs/rules/no-underscore-dangle
     'consistent-this': [2, 'self'],           // enforces consistent naming when capturing the current execution context (off by default)
     'func-names': 0,                 // http://eslint.org/docs/rules/func-names
-
-    // opentok/javascript: Constructors
     'no-proto': 2,                   // http://eslint.org/docs/rules/no-proto
 
     // END MODIFIED
@@ -250,7 +229,7 @@ module.exports = {
     ////////// Variables //////////
 
     'no-catch-shadow': 0,             // disallow the catch clause parameter name being the same as a variable in the outer scope (off by default in the node environment)
-    'no-label-var': 0,                // disallow labels that share a name with a variable
+    'no-label-var': 2,                // disallow labels that share a name with a variable
 
     ////////// Node.js //////////
 
